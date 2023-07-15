@@ -39,8 +39,6 @@ var speCha = special.split('')
 var num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
 
-
-
 // Functions
 
 // Prompt for length
@@ -90,6 +88,8 @@ function writePassword() {
 
     if (lowercase) {
         var array1 = alphaLower
+    } else {
+
     }
 
     if (uppercase) {
@@ -105,42 +105,21 @@ function writePassword() {
     }
 
     if (lowercase === false && uppercase === false && specialCharacters === false && numeric === false) {
-        
-    }
-
-    for (let index = 0; index < userChoice[0]; index++) {
-        console.log(randArray[Math.floor(Math.random() * randArray.length)])
         alert("You must choose at least one type of characters for your password")
         return
     }
 
     var randArray = array1.concat(array2, array3, array4)
-    console.log(randArray)
+    var filtArray = randArray.filter(x => x !== undefined)
 
+    for (let index = 0; index < userChoice[0]; index++) {
+        console.log(filtArray[Math.floor(Math.random() * filtArray.length)])
+    }
 
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
 
-    /*
-    * - If the user selects a length that doesn't meet the criteria, there should be an alert and it should rederict him to the length prompt again
-    * - If the user selects the correct length, the next prompt should come up
-    * - After selecting lowercase characters, the next prompt should come up
-    * - After selecting uppercase charaters, the next prompt shold come up
-    * - After selecting special characters, the next rpompt should come up
-    * - After selecting numbers, the password should be generated
-    * - Show password
-    * - Ask if we need to generate a new password
-    */
-
-
-
-
-    // Validate characters
-    // Generate password
-    // Show password
-
-    // var password = generatePassword();
-    // var passwordText = document.querySelector("#password");
-
-    // passwordText.value = password;
+    passwordText.value = password;
 
 }
 
