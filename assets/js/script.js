@@ -1,40 +1,10 @@
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-
-/* 
-* Add event listener to generate password button
-* A series of prompts for password criteria 
-* - Get length
-*   - Validate length
-* - Include lowercase
-* - Include uppercase
-* - Include special characters
-* - Include numeric
-*   - Validate character use (at least one of each)
-* - Generate a password that meets criteria
-* - Show password
-*/
-
 // Variable definitions
 var generateBtn = document.querySelector("#generate");
 
 var alphabet = "abcdefghijklmnopqrstuvwxyz"
 var alphaLower = alphabet.split('')
 var alphaUpper = alphabet.toUpperCase().split('')
-var special = " !#$%&’()*+,-./:;<=>?@[\]^_`{|}~"
+var special = "!#$%&’()*+,-./:;<=>?@[\]^_`{|}~"
 var speCha = special.split('')
 var num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
@@ -56,11 +26,6 @@ function writePassword() {
     var uppercase = confirm("Would you like to include uppercase charaters?");
     var specialCharacters = confirm("Would you like to include special charaters?");
     var numeric = confirm("Would you like to include numbers?");
-
-    function getTrueOrFalse(promptMessage) {
-        var userInput = prompt(promptMessage);
-        return userInput.toLowerCase() === 'true';
-    }
 
     // Array to store the true statements
     var trueStatements = [];
@@ -112,7 +77,7 @@ function writePassword() {
         return
     };
 
-    var randArray = [].concat(lowercase, uppercase, specialCharacters, numeric)
+    randArray = [].concat(lowercase, uppercase, specialCharacters, numeric)
     var filtArray = randArray.filter(x => x !== false);
 
     var passwordArray = [];
@@ -122,22 +87,9 @@ function writePassword() {
         passwordArray.push(randomChar);
     }
 
-    return passwordArray;
-
+    var generatedPassword = passwordArray.join("");
+    var passwordText = document.querySelector("#password");
+    passwordText.textContent = 'Your Secure Password is: ' + generatedPassword;
 }
-
-var generatedPassword = writePassword();
-var password = generatedPassword.join("")
-
-console.log(password)
-alert('Your Secure Password is: ' + password);
-
-// var password = generatePassword();
-// var passwordText = document.querySelector("#password");
-
-// passwordText.value = password;
-
-// Special functions like "eventlisteners"
-// Add event listener to generate button
 
 generateBtn.addEventListener("click", writePassword);
