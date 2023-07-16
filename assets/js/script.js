@@ -83,8 +83,6 @@ function writePassword() {
         specialCharacters,
         numeric,
     ]
-    console.log(userChoice)
-    console.log(userChoice[0])
     
     var randArray = [];
 
@@ -97,12 +95,10 @@ function writePassword() {
         return
     };
     var filtArray = randArray.filter(x => x !== undefined);
-    
 
     for (let index = 0; index < userChoice[0]; index++) {
         console.log(filtArray[Math.floor(Math.random() * filtArray.length)])
     };
-    
     
     // var password = generatePassword();
     // var passwordText = document.querySelector("#password");
