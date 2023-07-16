@@ -51,7 +51,7 @@ function writePassword() {
     } else {
         console.log("Password length is: " + length + " characters")
     };
-    
+
     // Prompt for characters
     var lowercase = confirm("Would you like to include lowercase charaters?");
     if (lowercase) {
@@ -63,19 +63,19 @@ function writePassword() {
     if (uppercase) {
         console.log("You have chose to include uppercase characters in your password " + uppercase);
     }
-    
+
     // Prompt for characters
     var specialCharacters = confirm("Would you like to include special charaters?");
     if (specialCharacters) {
         console.log("You have chose to include special characters in your password " + specialCharacters);
     }
-    
+
     // Prompt for characters
     var numeric = confirm("Would you like to include numbers?");
     if (numeric) {
         console.log("You have chose to include numbers in your password " + numeric);
     }
-    
+
     var userChoice = [
         length,
         lowercase,
@@ -83,11 +83,11 @@ function writePassword() {
         specialCharacters,
         numeric,
     ]
-    
+
     var randArray = [];
 
     if (lowercase === true || uppercase === true || specialCharacters === true || numeric === true) {
-        var randArray = alphaLower.concat(alphaUpper, speCha, num);    
+        var randArray = alphaLower.concat(alphaUpper, speCha, num);
     }
 
     if (lowercase === false && uppercase === false && specialCharacters === false && numeric === false) {
@@ -96,16 +96,25 @@ function writePassword() {
     };
     var filtArray = randArray.filter(x => x !== undefined);
 
+    var passwordArray = [];
+  
     for (let index = 0; index < userChoice[0]; index++) {
-        console.log(filtArray[Math.floor(Math.random() * filtArray.length)])
-    };
-    
-    // var password = generatePassword();
-    // var passwordText = document.querySelector("#password");
-    
-    // passwordText.value = password;
-    
-}
+      var randomChar = filtArray[Math.floor(Math.random() * filtArray.length)];
+      passwordArray.push(randomChar);
+    }
+  
+    return passwordArray;
+  }
+  
+  var generatedPassword = writePassword();
+  var password = generatedPassword.join("")
+  console.log(password)
+
+
+// var password = generatePassword();
+// var passwordText = document.querySelector("#password");
+
+// passwordText.value = password;
 
 // Special functions like "eventlisteners"
 // Add event listener to generate button
