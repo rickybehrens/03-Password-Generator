@@ -48,9 +48,8 @@ function writePassword() {
     if (length < 8 || length > 128 || isNaN(length)) {
         alert("Password must be between 8 and 128 characters")
         return
-    } else {
-        console.log("Password length is: " + length + " characters")
     };
+
 
     // Prompt for characters
     var lowercase = confirm("Would you like to include lowercase charaters?");
@@ -70,15 +69,12 @@ function writePassword() {
     if (lowercase) {
         trueStatements.push('Lowercase');
     }
-
     if (uppercase) {
         trueStatements.push('Uppercase');
     }
-
     if (specialCharacters) {
         trueStatements.push('Special Characters');
     }
-
     if (numeric) {
         trueStatements.push('Numbers');
     }
@@ -101,15 +97,12 @@ function writePassword() {
     if (lowercase) {
         lowercase = alphaLower
     }
-
     if (uppercase) {
         uppercase = alphaUpper
     }
-
     if (specialCharacters) {
         specialCharacters = speCha
     }
-
     if (numeric) {
         numeric = num
     }
@@ -119,12 +112,8 @@ function writePassword() {
         return
     };
 
-    console.log(userChoice)
     var randArray = [].concat(lowercase, uppercase, specialCharacters, numeric)
-    console.log(randArray)
-
     var filtArray = randArray.filter(x => x !== false);
-    console.log(filtArray)
 
     var passwordArray = [];
 
@@ -134,12 +123,14 @@ function writePassword() {
     }
 
     return passwordArray;
-        
-}    
+
+}
 
 var generatedPassword = writePassword();
 var password = generatedPassword.join("")
+
 console.log(password)
+alert('Your Secure Password is: ' + password);
 
 // var password = generatePassword();
 // var passwordText = document.querySelector("#password");
@@ -148,4 +139,5 @@ console.log(password)
 
 // Special functions like "eventlisteners"
 // Add event listener to generate button
+
 generateBtn.addEventListener("click", writePassword);
