@@ -51,7 +51,7 @@ function writePassword() {
     } else {
         console.log("Password length is: " + length + " characters")
     };
-
+    
     // Prompt for characters
     var lowercase = confirm("Would you like to include lowercase charaters?");
     if (lowercase) {
@@ -63,19 +63,19 @@ function writePassword() {
     if (uppercase) {
         console.log("You have chose to include uppercase characters in your password " + uppercase);
     }
-
+    
     // Prompt for characters
     var specialCharacters = confirm("Would you like to include special charaters?");
     if (specialCharacters) {
         console.log("You have chose to include special characters in your password " + specialCharacters);
     }
-
+    
     // Prompt for characters
     var numeric = confirm("Would you like to include numbers?");
     if (numeric) {
         console.log("You have chose to include numbers in your password " + numeric);
     }
-
+    
     var userChoice = [
         length,
         lowercase,
@@ -85,42 +85,30 @@ function writePassword() {
     ]
     console.log(userChoice)
     console.log(userChoice[0])
+    
+    var randArray = [];
 
-    if (lowercase) {
-        var array1 = alphaLower
-    } else {
-
-    }
-
-    if (uppercase) {
-        var array2 = alphaUpper
-    }
-
-    if (specialCharacters) {
-        var array3 = speCha
-    }
-
-    if (numeric) {
-        var array4 = num
+    if (lowercase === true || uppercase === true || specialCharacters === true || numeric === true) {
+        var randArray = alphaLower.concat(alphaUpper, speCha, num);    
     }
 
     if (lowercase === false && uppercase === false && specialCharacters === false && numeric === false) {
         alert("You must choose at least one type of characters for your password")
         return
-    }
-
-    var randArray = array1.concat(array2, array3, array4)
-    var filtArray = randArray.filter(x => x !== undefined)
+    };
+    var filtArray = randArray.filter(x => x !== undefined);
+    
 
     for (let index = 0; index < userChoice[0]; index++) {
         console.log(filtArray[Math.floor(Math.random() * filtArray.length)])
-    }
-
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
-
+    };
+    
+    
+    // var password = generatePassword();
+    // var passwordText = document.querySelector("#password");
+    
+    // passwordText.value = password;
+    
 }
 
 // Special functions like "eventlisteners"
