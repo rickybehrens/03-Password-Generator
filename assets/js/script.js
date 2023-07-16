@@ -54,26 +54,38 @@ function writePassword() {
 
     // Prompt for characters
     var lowercase = confirm("Would you like to include lowercase charaters?");
-    if (lowercase) {
-        console.log("You have chose to include lowercase characters in your password " + lowercase);
-    }
-
-    // Prompt for characters
     var uppercase = confirm("Would you like to include uppercase charaters?");
-    if (uppercase) {
-        console.log("You have chose to include uppercase characters in your password " + uppercase);
-    }
-
-    // Prompt for characters
     var specialCharacters = confirm("Would you like to include special charaters?");
-    if (specialCharacters) {
-        console.log("You have chose to include special characters in your password " + specialCharacters);
+    var numeric = confirm("Would you like to include numbers?");
+
+    function getTrueOrFalse(promptMessage) {
+        var userInput = prompt(promptMessage);
+        return userInput.toLowerCase() === 'true';
     }
 
-    // Prompt for characters
-    var numeric = confirm("Would you like to include numbers?");
+    // Array to store the true statements
+    var trueStatements = [];
+
+    // Check multiple prompts and add true statements to the array
+    if (lowercase) {
+        trueStatements.push('Lowercase');
+    }
+
+    if (uppercase) {
+        trueStatements.push('Uppercase');
+    }
+
+    if (specialCharacters) {
+        trueStatements.push('Special Characters');
+    }
+
     if (numeric) {
-        console.log("You have chose to include numbers in your password " + numeric);
+        trueStatements.push('Numbers');
+    }
+
+    // Create the alert box with true statements
+    if (trueStatements.length > 0) {
+        alert('You have chosen to include: ' + '\n' + trueStatements.join('\n') + '\nin your password.')
     }
 
     var userChoice = [
@@ -86,30 +98,48 @@ function writePassword() {
 
     var randArray = [];
 
-    if (lowercase === true || uppercase === true || specialCharacters === true || numeric === true) {
-        var randArray = alphaLower.concat(alphaUpper, speCha, num);
+    if (lowercase) {
+        lowercase = alphaLower
+    }
+
+    if (uppercase) {
+        uppercase = alphaUpper
+    }
+
+    if (specialCharacters) {
+        specialCharacters = speCha
+    }
+
+    if (numeric) {
+        numeric = num
     }
 
     if (lowercase === false && uppercase === false && specialCharacters === false && numeric === false) {
         alert("You must choose at least one type of characters for your password")
         return
     };
-    var filtArray = randArray.filter(x => x !== undefined);
+
+    console.log(userChoice)
+    var randArray = [].concat(lowercase, uppercase, specialCharacters, numeric)
+    console.log(randArray)
+
+    var filtArray = randArray.filter(x => x !== false);
+    console.log(filtArray)
 
     var passwordArray = [];
-  
-    for (let index = 0; index < userChoice[0]; index++) {
-      var randomChar = filtArray[Math.floor(Math.random() * filtArray.length)];
-      passwordArray.push(randomChar);
-    }
-  
-    return passwordArray;
-  }
-  
-  var generatedPassword = writePassword();
-  var password = generatedPassword.join("")
-  console.log(password)
 
+    for (let index = 0; index < userChoice[0]; index++) {
+        var randomChar = filtArray[Math.floor(Math.random() * filtArray.length)];
+        passwordArray.push(randomChar);
+    }
+
+    return passwordArray;
+        
+}    
+
+var generatedPassword = writePassword();
+var password = generatedPassword.join("")
+console.log(password)
 
 // var password = generatePassword();
 // var passwordText = document.querySelector("#password");
