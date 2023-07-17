@@ -49,6 +49,7 @@ function writePassword() {
         alert('You have chosen to include: ' + '\n' + trueStatements.join('\n') + '\nin your password.')
     }
 
+    // Define user's choice variables
     var userChoice = [
         length,
         lowercase,
@@ -57,6 +58,7 @@ function writePassword() {
         numeric,
     ]
 
+    // Define the random array absed on the user's choice
     var randArray = [];
 
     if (lowercase) {
@@ -80,6 +82,7 @@ function writePassword() {
     randArray = [].concat(lowercase, uppercase, specialCharacters, numeric)
     var filtArray = randArray.filter(x => x !== false);
 
+    // Given the length of the password selected by the user, we define the variable that will eventually create the string
     var passwordArray = [];
 
     for (let index = 0; index < userChoice[0]; index++) {
@@ -87,9 +90,13 @@ function writePassword() {
         passwordArray.push(randomChar);
     }
 
+    // Define variable as string
     var generatedPassword = passwordArray.join("");
+
+    //DOM selector to display the generated password on the website
     var passwordText = document.querySelector("#password");
     passwordText.textContent = 'Your Secure Password is: ' + generatedPassword;
 }
 
+// Event listerner to start the function
 generateBtn.addEventListener("click", writePassword);
